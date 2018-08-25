@@ -8,9 +8,12 @@
 
 #import "DSParksTableViewControlViewModel.h"
 #import "DSURLSessionManager.h"
+#import "DSPark.h"
 
 @interface DSParksTableViewControlViewModel()
-@property (nonatomic, strong) NSMutableDictionary *queuedTasks;
+@property (nonatomic, strong) DSURLSessionManager *session;
+@property (nonatomic, strong) NSURLSessionDataTask *task;
+@property (nonatomic, assign) BOOL isMoreParks;
 @end
 
 @implementation DSParksTableViewControlViewModel
@@ -19,17 +22,35 @@
 {
     self = [super init];
     if (self) {
+        _session = [[DSURLSessionManager alloc] init];
         _parks = [NSMutableArray array];
-        _queuedTasks = [NSMutableDictionary dictionary];
     }
     return self;
 }
 
-- (void)fetchParksWithOffset:(NSUInteger)offset
+- (void)fetchParks
 {
-    DSURLSessionManager *session = [[DSURLSessionManager alloc] init];
-    NSURLSessionDataTask *task = [session fetchParksWithOffset:offset completion:^(NSArray<DSPark *> *parks, NSError *error) {
+    if (_task) {
+        [_task cancel];
+        _task = nil;
+    }
+    _task = [_session fetchParksWithOffset:self.parks.count completion:^(NSArray<DSPark *> *parks, NSUInteger totalOfParks, NSError *error) {
+        self.task = nil;
+        if (error) {
+            [self.delegate parksTableViewModelDidFetchFailed:self];
+            return;
+        }
         
+        for (DSPark *park in parks) {
+            if ([self.parks containsObject:park]) {
+                [self.delegate parksTableViewModelDidFetchFailed:self];
+                return;
+            }
+        }
+        
+        [self.parks addObjectsFromArray:parks];
+        [self.delegate parksTableViewModelDidUpdateParks:self];
+        self.isMoreParks = totalOfParks != self.parks.count;
     }];
 }
 @end

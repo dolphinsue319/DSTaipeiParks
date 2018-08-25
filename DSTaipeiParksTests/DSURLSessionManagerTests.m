@@ -27,7 +27,7 @@
 
 - (void)testTask {
     XCTestExpectation *expectation = [[XCTestExpectation alloc] initWithDescription:@"sessionTask"];
-    NSURLSessionDataTask *task = [_session fetchParksWithOffset:0 completion:^(NSArray<DSPark *> *parks, NSError *error) {
+    NSURLSessionDataTask *task = [_session fetchParksWithOffset:0 completion:^(NSArray<DSPark *> *parks, NSUInteger totalOfParks, NSError *error) {
         if (error) {
             XCTAssertNil(parks);
             [expectation fulfill];
@@ -35,6 +35,7 @@
         }
         XCTAssertNotNil(parks);
         XCTAssertTrue(parks.count > 0);
+        XCTAssertTrue(totalOfParks > 0);
         [expectation fulfill];
     }];
     XCTAssertNotNil(task);

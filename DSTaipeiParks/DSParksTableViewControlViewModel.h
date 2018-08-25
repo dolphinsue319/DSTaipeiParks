@@ -8,20 +8,18 @@
 
 #import <Foundation/Foundation.h>
 @class DSPark;
-
-typedef NS_ENUM(NSUInteger, DSParksTableViewControlViewModelStatus) {
-    DSParksTableViewControlViewModelStatusFetching = 0,
-    DSParksTableViewControlViewModelStatusSucceed,
-    DSParksTableViewControlViewModelStatusFailed
-};
+@class DSParksTableViewControlViewModel;
 
 @protocol DSParksTableViewControlViewModelDelegate<NSObject>
 @required
-- (void)parksTableViewModelDidUpdateParks;
+- (void)parksTableViewModelDidUpdateParks:(DSParksTableViewControlViewModel *)viewModel;
+- (void)parksTableViewModelDidFetchFailed:(DSParksTableViewControlViewModel *)viewModel;
 @end
 
 @interface DSParksTableViewControlViewModel : NSObject
-@property (nonatomic, readonly) DSParksTableViewControlViewModelStatus status;
+@property (nonatomic, weak) id<DSParksTableViewControlViewModelDelegate> delegate;
 @property (nonatomic, strong) NSMutableArray *parks;
-- (void)fetchParksWithOffset:(NSUInteger)offset;
+@property (nonatomic, readonly) BOOL isMoreParks;
+
+- (void)fetchParks;
 @end

@@ -12,7 +12,7 @@
 
 @implementation DSURLSessionManager
 
-- (NSURLSessionDataTask *)fetchParksWithOffset:(NSUInteger)offset completion:(void (^)(NSArray <DSPark *> *, NSError *))callback
+- (NSURLSessionDataTask *)fetchParksWithOffset:(NSUInteger)offset completion:(void (^)(NSArray <DSPark *> *parks, NSUInteger totalOfParks, NSError *error))callback
 {
     NSURLSessionConfiguration* sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig delegate:nil delegateQueue:nil];
@@ -32,19 +32,19 @@
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error == nil) {
             if (((NSHTTPURLResponse *)response).statusCode != 200) {
-                callback(nil, [NSError errorWithDomain:@"DSError" code:((NSHTTPURLResponse *)response).statusCode userInfo:nil]);
+                callback(nil, 0, [NSError errorWithDomain:@"DSError" code:((NSHTTPURLResponse *)response).statusCode userInfo:nil]);
                 return;
             }
             
             NSError *jsonError;
             id object = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&jsonError];
             if (jsonError) {
-                callback(nil, jsonError);
+                callback(nil, 0, jsonError);
                 return;
             }
             
             if (![object isKindOfClass:[NSDictionary class]]) {
-                callback(nil, [NSError errorWithDomain:@"DSError" code:999 userInfo:nil]);
+                callback(nil, 0, [NSError errorWithDomain:@"DSError" code:999 userInfo:nil]);
                 return;
             }
             
@@ -57,10 +57,11 @@
                     [parks addObject:park];
                 }
             }
-            callback(parks, nil);
+            NSUInteger totalOfParks = ((NSNumber *)[dict valueForKeyPath:@"result.count"]).unsignedIntegerValue;
+            callback(parks, totalOfParks, nil);
         }
         else {
-            callback(nil, error);
+            callback(nil, 0, error);
         }
     }];
     [task resume];

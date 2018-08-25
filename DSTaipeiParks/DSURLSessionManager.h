@@ -11,5 +11,5 @@
 
 @interface DSURLSessionManager : NSObject
 
-- (NSURLSessionDataTask *)fetchParksWithOffset:(NSUInteger)offset completion:(void (^)(NSArray <DSPark *> *, NSError *))callback;
+- (NSURLSessionDataTask *)fetchParksWithOffset:(NSUInteger)offset completion:(void (^)(NSArray <DSPark *> *parks, NSUInteger totalOfParks, NSError *error))callback;
 @end
