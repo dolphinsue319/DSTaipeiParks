@@ -17,7 +17,7 @@
     NSURLSessionConfiguration* sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig delegate:nil delegateQueue:nil];
     
-    NSURL* URL = [NSURL URLWithString:@"http://data.taipei/opendata/datalist/apiAccess"];
+    NSURL* URL = [NSURL URLWithString:@"https://data.taipei/opendata/datalist/apiAccess"];
     NSDictionary* URLParams = @{
                                 @"scope": @"resourceAquire",
                                 @"rid": @"bf073841-c734-49bf-a97f-3757a6013812",
@@ -43,18 +43,13 @@
                 return;
             }
             
-            if (!object) {
-                callback(nil, [NSError errorWithDomain:@"DSError" code:999 userInfo:nil]);
-                return;
-            }
-            
             if (![object isKindOfClass:[NSDictionary class]]) {
                 callback(nil, [NSError errorWithDomain:@"DSError" code:999 userInfo:nil]);
                 return;
             }
             
             NSDictionary *dict = (NSDictionary *)object;
-            NSArray *parksArray = [dict arrayForKey:@"results"];
+            NSArray *parksArray = (NSArray *)[dict valueForKeyPath:@"result.results"];
             NSMutableArray *parks = [NSMutableArray array];
             for (NSDictionary *parkDict in parksArray) {
                 DSPark *park = [[DSPark alloc] initWithDictionary:parkDict];
@@ -91,12 +86,6 @@ static NSString* NSStringFromQueryParameters(NSDictionary* queryParameters)
     return [parts componentsJoinedByString: @"&"];
 }
 
-/**
- Creates a new URL by adding the given query parameters.
- @param URL The input URL.
- @param queryParameters The query parameter dictionary to add.
- @return A new NSURL.
- */
 static NSURL* NSURLByAppendingQueryParameters(NSURL* URL, NSDictionary* queryParameters)
 {
     NSString* URLString = [NSString stringWithFormat:@"%@?%@",

@@ -12,7 +12,7 @@
 		CEB663AB213197CD0015DD2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB663AA213197CD0015DD2B /* Assets.xcassets */; };
 		CEB663AE213197CD0015DD2B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEB663AC213197CD0015DD2B /* LaunchScreen.storyboard */; };
 		CEB663B1213197CD0015DD2B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB663B0213197CD0015DD2B /* main.m */; };
-		CEB663BB213197CD0015DD2B /* DSTaipeiParksTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB663BA213197CD0015DD2B /* DSTaipeiParksTests.m */; };
+		CEB663BB213197CD0015DD2B /* DSURLSessionManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB663BA213197CD0015DD2B /* DSURLSessionManagerTests.m */; };
 		CEB663CA213198720015DD2B /* DSParksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB663C9213198720015DD2B /* DSParksTableViewController.m */; };
 		CEB663CD213198E30015DD2B /* DSParkTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB663CC213198E30015DD2B /* DSParkTableViewCell.m */; };
 		CEB663D02131A3150015DD2B /* DSURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB663CF2131A3150015DD2B /* DSURLSessionManager.m */; };
@@ -41,7 +41,7 @@
 		CEB663AF213197CD0015DD2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEB663B0213197CD0015DD2B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CEB663B6213197CD0015DD2B /* DSTaipeiParksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DSTaipeiParksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CEB663BA213197CD0015DD2B /* DSTaipeiParksTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSTaipeiParksTests.m; sourceTree = "<group>"; };
+		CEB663BA213197CD0015DD2B /* DSURLSessionManagerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSURLSessionManagerTests.m; sourceTree = "<group>"; };
 		CEB663BC213197CD0015DD2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEB663C8213198720015DD2B /* DSParksTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSParksTableViewController.h; sourceTree = "<group>"; };
 		CEB663C9213198720015DD2B /* DSParksTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSParksTableViewController.m; sourceTree = "<group>"; };
@@ -122,7 +122,7 @@
 		CEB663B9213197CD0015DD2B /* DSTaipeiParksTests */ = {
 			isa = PBXGroup;
 			children = (
-				CEB663BA213197CD0015DD2B /* DSTaipeiParksTests.m */,
+				CEB663BA213197CD0015DD2B /* DSURLSessionManagerTests.m */,
 				CEB663BC213197CD0015DD2B /* Info.plist */,
 			);
 			path = DSTaipeiParksTests;
@@ -243,7 +243,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEB663BB213197CD0015DD2B /* DSTaipeiParksTests.m in Sources */,
+				CEB663BB213197CD0015DD2B /* DSURLSessionManagerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

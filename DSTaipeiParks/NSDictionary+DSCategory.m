@@ -17,11 +17,4 @@
     return self[key];
 }
 
-- (nullable NSArray *)arrayForKey:(nonnull NSString *)key
-{
-    if (![[self allKeys] containsObject:key]) {
-        return nil;
-    }
-    return self[key];
-}
 @end

@@ -10,5 +10,4 @@
 
 @interface NSDictionary (DSCategory)
 - (nonnull NSString *)stringForKey:(nonnull NSString *)key defaultString:(nonnull NSString *)defaultString;
-- (nullable NSArray *)arrayForKey:(nonnull NSString *)key;
 @end
