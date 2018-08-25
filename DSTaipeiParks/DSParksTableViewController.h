@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  DSParksTableViewController.h
 //  DSTaipeiParks
 //
 //  Created by Dolphin Su on 2018/8/25.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface DSParksTableViewController : UITableViewController
 
 @end
-

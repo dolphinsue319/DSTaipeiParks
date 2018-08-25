@@ -8,12 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		CEB663A3213197CB0015DD2B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB663A2213197CB0015DD2B /* AppDelegate.m */; };
-		CEB663A6213197CB0015DD2B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB663A5213197CB0015DD2B /* ViewController.m */; };
 		CEB663A9213197CB0015DD2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEB663A7213197CB0015DD2B /* Main.storyboard */; };
 		CEB663AB213197CD0015DD2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB663AA213197CD0015DD2B /* Assets.xcassets */; };
 		CEB663AE213197CD0015DD2B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEB663AC213197CD0015DD2B /* LaunchScreen.storyboard */; };
 		CEB663B1213197CD0015DD2B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB663B0213197CD0015DD2B /* main.m */; };
 		CEB663BB213197CD0015DD2B /* DSTaipeiParksTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB663BA213197CD0015DD2B /* DSTaipeiParksTests.m */; };
+		CEB663CA213198720015DD2B /* DSParksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB663C9213198720015DD2B /* DSParksTableViewController.m */; };
+		CEB663CD213198E30015DD2B /* DSParkTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB663CC213198E30015DD2B /* DSParkTableViewCell.m */; };
+		CEB663D02131A3150015DD2B /* DSURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB663CF2131A3150015DD2B /* DSURLSessionManager.m */; };
+		CEB663D32131AA1F0015DD2B /* DSParksTableViewControlViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB663D22131AA1F0015DD2B /* DSParksTableViewControlViewModel.m */; };
+		CEB663D62131B4C30015DD2B /* DSPark.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB663D52131B4C30015DD2B /* DSPark.m */; };
+		CEB663D92131B6600015DD2B /* NSDictionary+DSCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB663D82131B6600015DD2B /* NSDictionary+DSCategory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,8 +35,6 @@
 		CEB6639E213197CB0015DD2B /* DSTaipeiParks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DSTaipeiParks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEB663A1213197CB0015DD2B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CEB663A2213197CB0015DD2B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		CEB663A4213197CB0015DD2B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		CEB663A5213197CB0015DD2B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		CEB663A8213197CB0015DD2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CEB663AA213197CD0015DD2B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEB663AD213197CD0015DD2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -40,6 +43,18 @@
 		CEB663B6213197CD0015DD2B /* DSTaipeiParksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DSTaipeiParksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEB663BA213197CD0015DD2B /* DSTaipeiParksTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSTaipeiParksTests.m; sourceTree = "<group>"; };
 		CEB663BC213197CD0015DD2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CEB663C8213198720015DD2B /* DSParksTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSParksTableViewController.h; sourceTree = "<group>"; };
+		CEB663C9213198720015DD2B /* DSParksTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSParksTableViewController.m; sourceTree = "<group>"; };
+		CEB663CB213198E30015DD2B /* DSParkTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSParkTableViewCell.h; sourceTree = "<group>"; };
+		CEB663CC213198E30015DD2B /* DSParkTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSParkTableViewCell.m; sourceTree = "<group>"; };
+		CEB663CE2131A3150015DD2B /* DSURLSessionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSURLSessionManager.h; sourceTree = "<group>"; };
+		CEB663CF2131A3150015DD2B /* DSURLSessionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSURLSessionManager.m; sourceTree = "<group>"; };
+		CEB663D12131AA1F0015DD2B /* DSParksTableViewControlViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSParksTableViewControlViewModel.h; sourceTree = "<group>"; };
+		CEB663D22131AA1F0015DD2B /* DSParksTableViewControlViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSParksTableViewControlViewModel.m; sourceTree = "<group>"; };
+		CEB663D42131B4C30015DD2B /* DSPark.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSPark.h; sourceTree = "<group>"; };
+		CEB663D52131B4C30015DD2B /* DSPark.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSPark.m; sourceTree = "<group>"; };
+		CEB663D72131B6600015DD2B /* NSDictionary+DSCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+DSCategory.h"; sourceTree = "<group>"; };
+		CEB663D82131B6600015DD2B /* NSDictionary+DSCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+DSCategory.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,8 +98,18 @@
 			children = (
 				CEB663A1213197CB0015DD2B /* AppDelegate.h */,
 				CEB663A2213197CB0015DD2B /* AppDelegate.m */,
-				CEB663A4213197CB0015DD2B /* ViewController.h */,
-				CEB663A5213197CB0015DD2B /* ViewController.m */,
+				CEB663C8213198720015DD2B /* DSParksTableViewController.h */,
+				CEB663C9213198720015DD2B /* DSParksTableViewController.m */,
+				CEB663D12131AA1F0015DD2B /* DSParksTableViewControlViewModel.h */,
+				CEB663D22131AA1F0015DD2B /* DSParksTableViewControlViewModel.m */,
+				CEB663CB213198E30015DD2B /* DSParkTableViewCell.h */,
+				CEB663CC213198E30015DD2B /* DSParkTableViewCell.m */,
+				CEB663CE2131A3150015DD2B /* DSURLSessionManager.h */,
+				CEB663CF2131A3150015DD2B /* DSURLSessionManager.m */,
+				CEB663D42131B4C30015DD2B /* DSPark.h */,
+				CEB663D52131B4C30015DD2B /* DSPark.m */,
+				CEB663D72131B6600015DD2B /* NSDictionary+DSCategory.h */,
+				CEB663D82131B6600015DD2B /* NSDictionary+DSCategory.m */,
 				CEB663A7213197CB0015DD2B /* Main.storyboard */,
 				CEB663AA213197CD0015DD2B /* Assets.xcassets */,
 				CEB663AC213197CD0015DD2B /* LaunchScreen.storyboard */,
@@ -203,9 +228,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEB663A6213197CB0015DD2B /* ViewController.m in Sources */,
 				CEB663B1213197CD0015DD2B /* main.m in Sources */,
+				CEB663D32131AA1F0015DD2B /* DSParksTableViewControlViewModel.m in Sources */,
+				CEB663CA213198720015DD2B /* DSParksTableViewController.m in Sources */,
+				CEB663D92131B6600015DD2B /* NSDictionary+DSCategory.m in Sources */,
+				CEB663D02131A3150015DD2B /* DSURLSessionManager.m in Sources */,
 				CEB663A3213197CB0015DD2B /* AppDelegate.m in Sources */,
+				CEB663CD213198E30015DD2B /* DSParkTableViewCell.m in Sources */,
+				CEB663D62131B4C30015DD2B /* DSPark.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
