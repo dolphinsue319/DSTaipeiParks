@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DSParksTableViewController : UITableViewController
+@interface DSParksTableViewController : UIViewController
 
 @end
