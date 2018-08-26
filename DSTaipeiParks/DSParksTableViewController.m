@@ -13,6 +13,8 @@
 #import "DSPark.h"
 
 NSString *const DSParkTableViewCellIdentifier = @"DSParkTableViewCellIdentifier";
+const float kBackgroundImageHeight = 100;
+const float kDefaultCellHeight = 44;
 
 @interface DSParksTableViewController ()<UITableViewDelegate, UITableViewDataSource, DSParksTableViewControlViewModelDelegate>
 @property (nonatomic, strong) UIImageView *backgroundImageView;
@@ -29,13 +31,14 @@ NSString *const DSParkTableViewCellIdentifier = @"DSParkTableViewCellIdentifier"
     _viewModel = [[DSParksTableViewControlViewModel alloc] init];
     _viewModel.delegate = self;
     
-    _backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 100)];
+    _backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), kBackgroundImageHeight)];
     UIImage *image = [UIImage imageNamed:@"parkSample"];
     _backgroundImageView.image = image;
     _backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
     
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    _tableView.estimatedRowHeight = kDefaultCellHeight;
     
     _tableView.backgroundColor = [UIColor clearColor];
 }
@@ -68,7 +71,7 @@ NSString *const DSParkTableViewCellIdentifier = @"DSParkTableViewCellIdentifier"
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return section == 0 ? 100 : 0;
+    return section == 0 ? kBackgroundImageHeight : kDefaultCellHeight;
 }
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
