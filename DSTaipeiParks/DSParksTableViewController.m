@@ -12,7 +12,7 @@
 #import "DSLoadingTableViewCell.h"
 #import "DSPark.h"
 
-const float kBackgroundImageHeight = 100;
+const float kBackgroundImageHeight = 160;
 const float kDefaultCellHeight = 44;
 
 @interface DSParksTableViewController ()<UITableViewDelegate, UITableViewDataSource, DSParksTableViewControlViewModelDelegate>
@@ -31,21 +31,25 @@ const float kDefaultCellHeight = 44;
     _viewModel.delegate = self;
     
     _backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), kBackgroundImageHeight)];
+    _backgroundImageView.translatesAutoresizingMaskIntoConstraints = NO;
     UIImage *image = [UIImage imageNamed:@"parkSample"];
     _backgroundImageView.image = image;
     _backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+    _backgroundImageView.clipsToBounds = YES;
     
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.estimatedRowHeight = kDefaultCellHeight;
     
     _tableView.backgroundColor = [UIColor clearColor];
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
+    
     [self.view addSubview:_tableView];
     [self.view insertSubview:_backgroundImageView belowSubview:_tableView];
+
+    [_backgroundImageView.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor constant:0].active = YES;
+    [_backgroundImageView.leadingAnchor constraintEqualToAnchor:_tableView.leadingAnchor].active = YES;
+    [_backgroundImageView.trailingAnchor constraintEqualToAnchor:_tableView.trailingAnchor].active = YES;
+    [_backgroundImageView.heightAnchor constraintEqualToConstant:kBackgroundImageHeight].active = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -70,7 +74,7 @@ const float kDefaultCellHeight = 44;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return section == 0 ? kBackgroundImageHeight : kDefaultCellHeight;
+    return section == 0 ? kBackgroundImageHeight : 0;
 }
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
