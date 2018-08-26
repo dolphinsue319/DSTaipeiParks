@@ -9,13 +9,14 @@
 #import "DSParksTableViewController.h"
 #import "DSParkTableViewCell.h"
 #import "DSParksTableViewControlViewModel.h"
+#import "DSLoadingTableViewCell.h"
 #import "DSPark.h"
 
 NSString *const DSParkTableViewCellIdentifier = @"DSParkTableViewCellIdentifier";
 
 @interface DSParksTableViewController ()<UITableViewDelegate, UITableViewDataSource, DSParksTableViewControlViewModelDelegate>
 @property (nonatomic, strong) UIImageView *backgroundImageView;
-@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) DSParksTableViewControlViewModel *viewModel;
 @end
 
@@ -83,7 +84,10 @@ NSString *const DSParkTableViewCellIdentifier = @"DSParkTableViewCellIdentifier"
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return section == 0 ? 1 : _viewModel.parks.count;
+    if (section == 0) {
+        return 1;
+    }
+    return _viewModel.isMoreParks ? _viewModel.parks.count + 1 : _viewModel.parks.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -93,6 +97,11 @@ NSString *const DSParkTableViewCellIdentifier = @"DSParkTableViewCellIdentifier"
             return [tableView dequeueReusableCellWithIdentifier:@"InvisibleCell"];
             break;
         case 1: {
+            if (_viewModel.isMoreParks && indexPath.row == _viewModel.parks.count) {
+                DSLoadingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LoadingCellIdentifier"];
+                [cell.indicatorView startAnimating];
+                return cell;
+            }
             DSParkTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DSParkTableViewCellIdentifier"];
             DSPark *park = [_viewModel parkAtIndex:indexPath.row];
             [cell configureParkName:park.parkName introduction:park.introduction];
@@ -108,6 +117,13 @@ NSString *const DSParkTableViewCellIdentifier = @"DSParkTableViewCellIdentifier"
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return indexPath.section == 0 ? 0 : UITableViewAutomaticDimension;
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([cell isKindOfClass:[DSLoadingTableViewCell class]]) {
+        [_viewModel fetchParks];
+    }
 }
 
 -(void)parksTableViewModelDidUpdateParks:(DSParksTableViewControlViewModel *)viewModel

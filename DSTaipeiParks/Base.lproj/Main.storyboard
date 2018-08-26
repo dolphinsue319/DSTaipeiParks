@@ -60,8 +60,32 @@
                                             <outlet property="parkNameLabel" destination="mxn-7S-F37" id="XAW-eH-9mB"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LoadingCellIdentifier" id="ghT-ff-yfJ" customClass="DSLoadingTableViewCell">
+                                        <rect key="frame" x="0.0" y="194" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ghT-ff-yfJ" id="bA3-eR-3I2">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="0xY-sL-Igw">
+                                                    <rect key="frame" x="177" y="12" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="Jvb-mC-hAs"/>
+                                                        <constraint firstAttribute="height" constant="20" id="VxE-Jh-DoU"/>
+                                                    </constraints>
+                                                </activityIndicatorView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="0xY-sL-Igw" firstAttribute="centerX" secondItem="bA3-eR-3I2" secondAttribute="centerX" id="BZf-vZ-dHQ"/>
+                                                <constraint firstItem="0xY-sL-Igw" firstAttribute="centerY" secondItem="bA3-eR-3I2" secondAttribute="centerY" id="NyW-HI-A5P"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="indicatorView" destination="0xY-sL-Igw" id="tGZ-E5-NIT"/>
+                                        </connections>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="InvisibleCell" textLabel="M6G-Qb-aC3" rowHeight="0.0" style="IBUITableViewCellStyleDefault" id="HfR-gs-46j">
-                                        <rect key="frame" x="0.0" y="194" width="375" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="238" width="375" height="0.0"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HfR-gs-46j" id="7ZE-yf-7S1">
                                             <rect key="frame" x="0.0" y="-0.5" width="375" height="0.5"/>

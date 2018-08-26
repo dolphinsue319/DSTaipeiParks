@@ -9,15 +9,14 @@
 #import "DSParkTableViewCell.h"
 
 @interface DSParkTableViewCell()
-@property (nonatomic, strong) IBOutlet UILabel *parkNameLabel;
-@property (nonatomic, strong) IBOutlet UILabel *introductionLabel;
+@property (nonatomic, weak) IBOutlet UILabel *parkNameLabel;
+@property (nonatomic, weak) IBOutlet UILabel *introductionLabel;
 @end
 
 @implementation DSParkTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-//    [self.contentView setAutoresizingMask:UIViewAutoresizingFlexibleHeight];
 }
 -(void)prepareForReuse
 {
@@ -33,8 +32,6 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 - (void)configureParkName:(nonnull NSString *)parkName introduction:(nonnull NSString *)introduction

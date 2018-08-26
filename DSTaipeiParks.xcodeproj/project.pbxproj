@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CE2B9157213202EA006D6B2D /* DSParksTableViewControlViewModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2B9156213202EA006D6B2D /* DSParksTableViewControlViewModelTests.m */; };
+		CE2B915E213264D3006D6B2D /* DSLoadingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2B915D213264D3006D6B2D /* DSLoadingTableViewCell.m */; };
 		CEB663A3213197CB0015DD2B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB663A2213197CB0015DD2B /* AppDelegate.m */; };
 		CEB663A9213197CB0015DD2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEB663A7213197CB0015DD2B /* Main.storyboard */; };
 		CEB663AB213197CD0015DD2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB663AA213197CD0015DD2B /* Assets.xcassets */; };
@@ -34,6 +35,8 @@
 
 /* Begin PBXFileReference section */
 		CE2B9156213202EA006D6B2D /* DSParksTableViewControlViewModelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSParksTableViewControlViewModelTests.m; sourceTree = "<group>"; };
+		CE2B915C213264D3006D6B2D /* DSLoadingTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSLoadingTableViewCell.h; sourceTree = "<group>"; };
+		CE2B915D213264D3006D6B2D /* DSLoadingTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSLoadingTableViewCell.m; sourceTree = "<group>"; };
 		CEB6639E213197CB0015DD2B /* DSTaipeiParks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DSTaipeiParks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEB663A1213197CB0015DD2B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CEB663A2213197CB0015DD2B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -106,6 +109,8 @@
 				CEB663D22131AA1F0015DD2B /* DSParksTableViewControlViewModel.m */,
 				CEB663CB213198E30015DD2B /* DSParkTableViewCell.h */,
 				CEB663CC213198E30015DD2B /* DSParkTableViewCell.m */,
+				CE2B915C213264D3006D6B2D /* DSLoadingTableViewCell.h */,
+				CE2B915D213264D3006D6B2D /* DSLoadingTableViewCell.m */,
 				CEB663CE2131A3150015DD2B /* DSURLSessionManager.h */,
 				CEB663CF2131A3150015DD2B /* DSURLSessionManager.m */,
 				CEB663D42131B4C30015DD2B /* DSPark.h */,
@@ -238,6 +243,7 @@
 				CEB663D02131A3150015DD2B /* DSURLSessionManager.m in Sources */,
 				CEB663A3213197CB0015DD2B /* AppDelegate.m in Sources */,
 				CEB663CD213198E30015DD2B /* DSParkTableViewCell.m in Sources */,
+				CE2B915E213264D3006D6B2D /* DSLoadingTableViewCell.m in Sources */,
 				CEB663D62131B4C30015DD2B /* DSPark.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
