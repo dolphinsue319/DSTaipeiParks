@@ -12,7 +12,6 @@
 #import "DSLoadingTableViewCell.h"
 #import "DSPark.h"
 
-NSString *const DSParkTableViewCellIdentifier = @"DSParkTableViewCellIdentifier";
 const float kBackgroundImageHeight = 100;
 const float kDefaultCellHeight = 44;
 
@@ -97,15 +96,15 @@ const float kDefaultCellHeight = 44;
 {
     switch (indexPath.section) {
         case 0:
-            return [tableView dequeueReusableCellWithIdentifier:@"InvisibleCell"];
+            return [tableView dequeueReusableCellWithIdentifier:@"DSInvisibleCell"];
             break;
         case 1: {
             if (_viewModel.isMoreParks && indexPath.row == _viewModel.parks.count) {
-                DSLoadingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LoadingCellIdentifier"];
+                DSLoadingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DSLoadingCell"];
                 [cell.indicatorView startAnimating];
                 return cell;
             }
-            DSParkTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DSParkTableViewCellIdentifier"];
+            DSParkTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DSParkTableViewCell"];
             DSPark *park = [_viewModel parkAtIndex:indexPath.row];
             [cell configureParkName:park.parkName introduction:park.introduction];
             return cell;
@@ -127,6 +126,11 @@ const float kDefaultCellHeight = 44;
     if ([cell isKindOfClass:[DSLoadingTableViewCell class]]) {
         [_viewModel fetchParks];
     }
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 -(void)parksTableViewModelDidUpdateParks:(DSParksTableViewControlViewModel *)viewModel
