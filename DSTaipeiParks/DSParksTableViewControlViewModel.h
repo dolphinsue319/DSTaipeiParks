@@ -22,4 +22,5 @@
 @property (nonatomic, readonly) BOOL isMoreParks;
 
 - (void)fetchParks;
+- (nullable DSPark *)parkAtIndex:(NSUInteger)index;
 @end

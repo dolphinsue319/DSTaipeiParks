@@ -15,7 +15,9 @@
     NSParameterAssert(dictionary);
     if (self = [super init]) {
         _identifier = [dictionary stringForKey:@"_id" defaultString:@""];
-        _parkName = [dictionary stringForKey:@"ParkName" defaultString:@""];
+        NSString *parkName = [dictionary stringForKey:@"ParkName" defaultString:@""];
+        NSString *name = [dictionary stringForKey:@"Name" defaultString:@""];
+        _parkName = [NSString stringWithFormat:@"%@-%@", parkName, name];
         _introduction = [dictionary stringForKey:@"Introduction" defaultString:@""];
         _imageURLString = [dictionary stringForKey:@"Image" defaultString:@""];
     }

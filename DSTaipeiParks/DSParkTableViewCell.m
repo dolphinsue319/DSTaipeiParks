@@ -8,18 +8,27 @@
 
 #import "DSParkTableViewCell.h"
 
+@interface DSParkTableViewCell()
+@property (nonatomic, strong) IBOutlet UILabel *parkNameLabel;
+@property (nonatomic, strong) IBOutlet UILabel *introductionLabel;
+@end
+
 @implementation DSParkTableViewCell
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        
-    }
-    return self;
-}
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+//    [self.contentView setAutoresizingMask:UIViewAutoresizingFlexibleHeight];
+}
+-(void)prepareForReuse
+{
+    [super prepareForReuse];
+    _parkNameLabel.text = nil;
+    _introductionLabel.text = nil;
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -28,4 +37,9 @@
     // Configure the view for the selected state
 }
 
+- (void)configureParkName:(nonnull NSString *)parkName introduction:(nonnull NSString *)introduction
+{
+    _parkNameLabel.text = parkName;
+    _introductionLabel.text = introduction;
+}
 @end

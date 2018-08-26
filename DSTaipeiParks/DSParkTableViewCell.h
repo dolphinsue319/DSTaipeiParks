@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface DSParkTableViewCell : UITableViewCell
-
+- (void)configureParkName:(nonnull NSString *)parkName introduction:(nonnull NSString *)introduction;
 @end

@@ -37,20 +37,34 @@
     _task = [_session fetchParksWithOffset:self.parks.count completion:^(NSArray<DSPark *> *parks, NSUInteger totalOfParks, NSError *error) {
         self.task = nil;
         if (error) {
-            [self.delegate parksTableViewModelDidFetchFailed:self];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.delegate parksTableViewModelDidFetchFailed:self];
+            });
             return;
         }
         
         for (DSPark *park in parks) {
             if ([self.parks containsObject:park]) {
-                [self.delegate parksTableViewModelDidFetchFailed:self];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.delegate parksTableViewModelDidFetchFailed:self];
+                });
                 return;
             }
         }
         
         [self.parks addObjectsFromArray:parks];
-        [self.delegate parksTableViewModelDidUpdateParks:self];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.delegate parksTableViewModelDidUpdateParks:self];
+        });
         self.isMoreParks = totalOfParks != self.parks.count;
     }];
+}
+
+- (nullable DSPark *)parkAtIndex:(NSUInteger)index
+{
+    if (index >= _parks.count) {
+        return nil;
+    }
+    return _parks[index];
 }
 @end

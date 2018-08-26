@@ -8,12 +8,15 @@
 
 #import "DSParksTableViewController.h"
 #import "DSParkTableViewCell.h"
+#import "DSParksTableViewControlViewModel.h"
+#import "DSPark.h"
 
 NSString *const DSParkTableViewCellIdentifier = @"DSParkTableViewCellIdentifier";
 
-@interface DSParksTableViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface DSParksTableViewController ()<UITableViewDelegate, UITableViewDataSource, DSParksTableViewControlViewModelDelegate>
 @property (nonatomic, strong) UIImageView *backgroundImageView;
-@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) DSParksTableViewControlViewModel *viewModel;
 @end
 
 @implementation DSParksTableViewController
@@ -21,21 +24,33 @@ NSString *const DSParkTableViewCellIdentifier = @"DSParkTableViewCellIdentifier"
 -(void)loadView
 {
     [super loadView];
+    
+    _viewModel = [[DSParksTableViewControlViewModel alloc] init];
+    _viewModel.delegate = self;
+    
     _backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 100)];
     UIImage *image = [UIImage imageNamed:@"parkSample"];
     _backgroundImageView.image = image;
-    _backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;    
-    _tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
+    _backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+    
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    
+    _tableView.backgroundColor = [UIColor clearColor];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [_tableView registerClass:[DSParkTableViewCell class] forCellReuseIdentifier:DSParkTableViewCellIdentifier];
-    _tableView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:_tableView];
     [self.view insertSubview:_backgroundImageView belowSubview:_tableView];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (_viewModel.parks.count == 0) {
+        [_viewModel fetchParks];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,19 +77,32 @@ NSString *const DSParkTableViewCellIdentifier = @"DSParkTableViewCellIdentifier"
 -(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
 {
     view.tintColor = [UIColor clearColor];
-    view.isAccessibilityElement = NO;
     UITableViewHeaderFooterView *headerView = (UITableViewHeaderFooterView *)view;
     headerView.textLabel.textColor = [UIColor clearColor];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return section == 0 ? 1 : 3;
+    return section == 0 ? 1 : _viewModel.parks.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [tableView dequeueReusableCellWithIdentifier:DSParkTableViewCellIdentifier];
+    switch (indexPath.section) {
+        case 0:
+            return [tableView dequeueReusableCellWithIdentifier:@"InvisibleCell"];
+            break;
+        case 1: {
+            DSParkTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DSParkTableViewCellIdentifier"];
+            DSPark *park = [_viewModel parkAtIndex:indexPath.row];
+            [cell configureParkName:park.parkName introduction:park.introduction];
+            return cell;
+            break;
+        }
+        default:
+            break;
+    }
+    return [tableView dequeueReusableCellWithIdentifier:@"InvisibleCell"];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -82,8 +110,14 @@ NSString *const DSParkTableViewCellIdentifier = @"DSParkTableViewCellIdentifier"
     return indexPath.section == 0 ? 0 : UITableViewAutomaticDimension;
 }
 
--(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)parksTableViewModelDidUpdateParks:(DSParksTableViewControlViewModel *)viewModel
 {
-    cell.textLabel.text = [NSString stringWithFormat:@"%li-%li", (long)indexPath.section, (long)indexPath.row];
+    [_tableView reloadData];
 }
+
+-(void)parksTableViewModelDidFetchFailed:(DSParksTableViewControlViewModel *)viewModel
+{
+    
+}
+
 @end
