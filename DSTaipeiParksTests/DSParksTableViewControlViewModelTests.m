@@ -33,35 +33,34 @@
 
 - (void)testFetchParks {
     _expectation = [[XCTestExpectation alloc] initWithDescription:@"testFetchParks"];
+    _expectationForMoreParks = [[XCTestExpectation alloc] initWithDescription:@"testFetchMoreParks"];
+    [_viewModel fetchParks];
+    [_viewModel fetchParks];
     [_viewModel fetchParks];
     [self waitForExpectations:@[_expectation] timeout:10];
+    [self waitForExpectations:@[_expectationForMoreParks] timeout:20];
 }
 
 - (void)parksTableViewModelDidUpdateParks:(DSParksTableViewControlViewModel *)viewModel
 {
     if (_numberOfParks == 0) {
+        [_expectation fulfill];
         XCTAssertTrue(_viewModel.parks.count == 30);
         _numberOfParks = _viewModel.parks.count;
-        [_expectation fulfill];
+        
+        [_viewModel fetchParks];
         return;
     }
     
-    if (_numberOfParks == 30) {
-        XCTAssertTrue(_viewModel.parks.count == 60);
-        _numberOfParks = _viewModel.parks.count;
-        [_expectationForMoreParks fulfill];
-        return;
-    }
-    
-    _expectationForMoreParks = [[XCTestExpectation alloc] initWithDescription:@"testFetchMoreParks"];
-    [_viewModel fetchParks];
-    [self waitForExpectations:@[_expectationForMoreParks] timeout:10];
-    
+    XCTAssertTrue(_viewModel.parks.count == 60);
+    _numberOfParks = _viewModel.parks.count;
+    [_expectationForMoreParks fulfill];
 }
 
 - (void)parksTableViewModelDidFetchFailed:(DSParksTableViewControlViewModel *)viewModel
 {
     XCTFail(@"parksTableViewModelDidFetchFailed");
     [_expectation fulfill];
+    [_expectationForMoreParks fulfill];
 }
 @end

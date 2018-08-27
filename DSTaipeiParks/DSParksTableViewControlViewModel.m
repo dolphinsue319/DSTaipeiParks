@@ -31,8 +31,7 @@
 - (void)fetchParks
 {
     if (_task) {
-        [_task cancel];
-        _task = nil;
+        return;
     }
     _task = [_session fetchParksWithOffset:self.parks.count completion:^(NSArray<DSPark *> *parks, NSUInteger totalOfParks, NSError *error) {
         self.task = nil;
